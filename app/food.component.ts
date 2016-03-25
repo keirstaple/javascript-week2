@@ -1,21 +1,19 @@
-import { Component } from 'angular2/core';
-import { EditFoodComponent } from './edit-food.component';
+import { Component, EventEmitter } from 'angular2/core';
 import { Food } from './food.model';
 
 @Component({
   selector: 'food-display',
   inputs: ['food'],
-  directives: [EditFoodComponent]
   template: `
 
     <h3>{{ food.name }}</h3>
-    <edit-food *ngIf="selectedFood" [food]="selectedFood">
-    </edit-food>
+    <div class="hiddenDetails">
+      <h4> {{ food.details }}</h4>
+      <h4> {{ food.calories }}</h4>
+    </div>
   `
 })
 
 export class FoodComponent {
   public food: Food;
-  public selectedFood: Food;
-  this.selectedFood = clickedFood;
 }
