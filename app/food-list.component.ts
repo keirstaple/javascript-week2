@@ -2,21 +2,25 @@ import { Component, EventEmitter } from 'angular2/core';
 import { FoodComponent } from './food.component';
 import { Food } from './food.model';
 import { EditFoodComponent } from './edit-food.component';
+import { NewFoodComponent } from './new-food.component';
 
 
 @Component({
   selector: 'food-list',
   inputs: ['foodList'],
   outputs: ['onFoodSelect'],
-  directives: [FoodComponent, EditFoodComponent],
+  directives: [FoodComponent, EditFoodComponent, NewFoodComponent],
   template: `
     <food-display *ngFor="#currentFood of foodList"
       (click)="foodWasClicked(currentFood)"
       [class.selected]="currentFood === selectedFood"
       [food]="currentFood">
     </food-display>
+
     <edit-food *ngIf="selectedFood" [food]="selectedFood">
     </edit-food>
+
+    <new-food (onSubmitNewFood)="createFoodEntry($event)"></new-food>
   `
   //[class.selected]="currentTask === selectedTask" tells Angular to either add or remove the class selected based on whether or not the condition to the right of the equals sign is true: currentTask === selectedTask
 
@@ -38,5 +42,8 @@ export class FoodListComponent {
     console.log('child', clickedFood);
     this.selectedFood = clickedFood;
     this.onFoodSelect.emit(clickedFood);
+  }
+  createFoodEntry(newFood: Food): void {
+    this.foodList.push(newFood);
   }
 }
