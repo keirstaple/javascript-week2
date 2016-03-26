@@ -3,18 +3,26 @@ import { FoodComponent } from './food.component';
 import { Food } from './food.model';
 import { NewFoodComponent } from './new-food.component';
 import { EditFoodComponent } from './edit-food.component';
+import { DisplayDetailsCaloriesComponent } from './display-details-calories.component';
+import { HealthyPipe } from './healthy.pipe';
 
 
 @Component({
   selector: 'food-list',
   inputs: ['foodList'],
   outputs: ['onFoodSelect'],
-  directives: [FoodComponent, EditFoodComponent, NewFoodComponent],
+  directives: [FoodComponent, EditFoodComponent, NewFoodComponent, DisplayDetailsCaloriesComponent],
+  pipes: [HealthyPipe],
   template: `
 
-    <new-food (onSubmitNewFood)="createFoodEntry($event)"></new-food>
 
-    <food-display *ngFor="#currentFood of foodList"
+    <select (change)="onChange($event.target.value)">
+      <option value="all" selected="selected">Show All</option>
+      <option value="healthy">Show Healthy</option>
+      <option value="unhealthy">Show Unhealthy</option>
+    </select>
+
+    <food-display *ngFor="#currentFood of foodList | healthy: filterHealthy"
       (click)="foodWasClicked(currentFood)"
       [food]="currentFood">
     </food-display>
@@ -22,6 +30,8 @@ import { EditFoodComponent } from './edit-food.component';
     <display-details-calories *ngIf="selectedFood" [food]="selectedFood"></display-details-calories>
 
     <edit-food *ngIf="selectedFood" [food]="selectedFood"></edit-food>
+
+    <new-food (onSubmitNewFood)="createFoodEntry($event)"></new-food>
   `
   //[class.selected]="currentTask === selectedTask" tells Angular to either add or remove the class selected based on whether or not the condition to the right of the equals sign is true: currentTask === selectedTask
 
@@ -36,6 +46,7 @@ export class FoodListComponent {
   public foodList: Food[]; //setting foodList propety to expect a Food array. We will send this to the app component, where we will set it equal to the foods property, which is also an array of Food objects.
   public onFoodSelect: EventEmitter<Food>; //create a property to hold the Event Emitter object FoodListComponent output
   public selectedFood: Food;
+  public filterHealthy: string = "all";
   constructor(){
     this.onFoodSelect = new EventEmitter();
   }
@@ -46,5 +57,8 @@ export class FoodListComponent {
   }
   createFoodEntry(newFood: Food): void {
     this.foodList.push(newFood);
+  }
+  onChange(filterOption) {
+    this.filterHealthy = filterOption;
   }
 }
