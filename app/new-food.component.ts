@@ -10,7 +10,7 @@ import { Food } from './food.model';
       <input placeholder="Enter name of food" class="col-sm-8 input-sm" #newName>
       <input placeholder="Enter details about the food" class="col-sm-8 input-sm" #newDetails>
       <input placeholder="Enter the food's calories" class="col-sm-8 input-sm" #newCalories>
-      <button (click)="addFood(newName, newDetails, newCalories)">Add</button>
+      <button (click)="addFood(newName, newDetails, newCalories)" class="btn-info">Add</button>
     </div>
   `
   //use the # symbol in the <input> tag to create a new local variable to hold the value of that form element.

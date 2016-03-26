@@ -14,7 +14,7 @@ import { HealthyPipe } from './healthy.pipe';
   directives: [FoodComponent, EditFoodComponent, NewFoodComponent, DisplayDetailsCaloriesComponent],
   pipes: [HealthyPipe],
   template: `
-    <new-food (onSubmitNewFood)="createFoodEntry($event)"></new-food>
+
 
     <select (change)="onChange($event.target.value)">
       <option value="all" selected="selected">Show All</option>
@@ -30,6 +30,8 @@ import { HealthyPipe } from './healthy.pipe';
     <display-details-calories *ngIf="selectedFood" [food]="selectedFood"></display-details-calories>
 
     <edit-food *ngIf="selectedFood" [food]="selectedFood"></edit-food>
+
+    <new-food (onSubmitNewFood)="createFoodEntry($event)"></new-food>
   `
   //[class.selected]="currentTask === selectedTask" tells Angular to either add or remove the class selected based on whether or not the condition to the right of the equals sign is true: currentTask === selectedTask
 
