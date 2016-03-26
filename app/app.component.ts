@@ -26,7 +26,4 @@ export class AppComponent {
         // new Food('Thai', 'I ate all of it', 400, 0)
       ];
   }
-  foodWasSelected(clickedFood: Food): void {
-    console.log('parent', clickedFood);
-  }
 }

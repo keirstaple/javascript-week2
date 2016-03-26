@@ -11,7 +11,7 @@ export class HealthyPipe implements PipeTransform {
     var isHealthy = args[0];
     if (isHealthy === "healthy") {
       return input.filter((food) => {
-        return food.calories < 301;
+        return food.calories <= 300;
       });
     } else if (isHealthy === "unhealthy") {
       return input.filter((food) => {
