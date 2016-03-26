@@ -23,7 +23,7 @@ export class AppComponent {
   public foods: Food[];// Food[] (or Array<Food>) identifies tasks as an array of Task objects. Notice below that tasks is an array of new Task objects. Refer to tasks with this.
   constructor(){
       this.foods = [
-        new Food('Thai', 'I ate all of it', 400, 0)
+        // new Food('Thai', 'I ate all of it', 400, 0)
       ];
   }
   foodWasSelected(clickedFood: Food): void {

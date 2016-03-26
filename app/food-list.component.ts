@@ -11,16 +11,17 @@ import { EditFoodComponent } from './edit-food.component';
   outputs: ['onFoodSelect'],
   directives: [FoodComponent, EditFoodComponent, NewFoodComponent],
   template: `
+
+    <new-food (onSubmitNewFood)="createFoodEntry($event)"></new-food>
+
     <food-display *ngFor="#currentFood of foodList"
       (click)="foodWasClicked(currentFood)"
-      [class.selected]="currentFood === selectedFood"
       [food]="currentFood">
     </food-display>
 
-    <edit-food *ngIf="selectedFood" [food]="selectedFood">
-    </edit-food>
+    <display-details-calories *ngIf="selectedFood" [food]="selectedFood"></display-details-calories>
 
-    <new-food (onSubmitNewFood)="createFoodEntry($event)"></new-food>
+    <edit-food *ngIf="selectedFood" [food]="selectedFood"></edit-food>
   `
   //[class.selected]="currentTask === selectedTask" tells Angular to either add or remove the class selected based on whether or not the condition to the right of the equals sign is true: currentTask === selectedTask
 
