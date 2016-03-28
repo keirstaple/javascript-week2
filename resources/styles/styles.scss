@@ -2,18 +2,22 @@
   color: blue;
 }
 
-
-
 .edit-food-form {
-  margin-bottom: 10px;
   display: flex;
   flex-direction: column;
+  margin-right: 10px;
+  input{
+    width: 500px;
+  }
 }
 
 .new-food-form {
-  margin-top: 10px;
   display: flex;
   flex-direction: column;
+  margin-left: 10px;
+  input {
+    width: 500px;
+  }
   .btn-info{
     width: 200px;
   }
@@ -21,4 +25,12 @@
 
 .bothForms {
   display: flex;
+}
+
+.displayDetails {
+  border: solid 1px black;
+  width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: : center;
 }
