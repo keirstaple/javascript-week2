@@ -2,9 +2,23 @@
   color: blue;
 }
 
-.add-button {
+
+
+.edit-food-form {
   margin-bottom: 10px;
-  margin-left: 10px;
-  padding-top: 8px;
-  padding-bottom: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.new-food-form {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  .btn-info{
+    width: 200px;
+  }
+}
+
+.bothForms {
+  display: flex;
 }

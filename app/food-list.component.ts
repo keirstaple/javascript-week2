@@ -29,9 +29,11 @@ import { HealthyPipe } from './healthy.pipe';
 
     <display-details-calories *ngIf="selectedFood" [food]="selectedFood"></display-details-calories>
 
-    <edit-food *ngIf="selectedFood" [food]="selectedFood"></edit-food>
+    <div class="bothForms">
+      <edit-food *ngIf="selectedFood" [food]="selectedFood"></edit-food>
 
-    <new-food (onSubmitNewFood)="createFoodEntry($event)"></new-food>
+      <new-food (onSubmitNewFood)="createFoodEntry($event)"></new-food>
+    </div>
   `
   //[class.selected]="currentTask === selectedTask" tells Angular to either add or remove the class selected based on whether or not the condition to the right of the equals sign is true: currentTask === selectedTask
 
@@ -43,7 +45,7 @@ import { HealthyPipe } from './healthy.pipe';
 })
 
 export class FoodListComponent {
-  public foodList: Food[]; //setting foodList propety to expect a Food array. We will send this to the app component, where we will set it equal to the foods property, which is also an array of Food objects.
+  public foodList: Food[]; //setting foodList property to expect a Food array. We will send this to the app component, where we will set it equal to the foods property, which is also an array of Food objects.
   public onFoodSelect: EventEmitter<Food>; //create a property to hold the Event Emitter object FoodListComponent output
   public selectedFood: Food;
   public filterHealthy: string = "all";
